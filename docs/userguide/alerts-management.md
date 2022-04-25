@@ -63,7 +63,12 @@ For grouping, you can use any of the tags like `severity`, `alertname` or any ot
 
 ## Setting Notification channel
 
-In [v0.5.0](https://github.com/SigNoz/signoz/releases/tag/v0.5.0) we only support slack as a notification channel. We will add support for other channels like Email, OpsGenie, PagerDuty, etc. in upcoming releases.
+You can setup notification channels for sending the generated alerts to other systems or applications. Currently, We support the following channels: 
+- Slack ([v0.5.0](https://github.com/SigNoz/signoz/releases/tag/v0.5.0) onwards)
+- Webhook ([v0.7.4](https://github.com/SigNoz/signoz/releases/tag/v0.7.4) onwards)
+- Pagerduty (coming soon)
+
+We are also working towards adding more channels (OpsGenie, Email) in upcoming releases.
 
 For setting up Slack as a notification channel, you need to first configure an Incoming Webhook in Slack. The following article explains how to do that - [Sending messages to slack using Incoming Webhook](https://api.slack.com/messaging/webhooks)
 

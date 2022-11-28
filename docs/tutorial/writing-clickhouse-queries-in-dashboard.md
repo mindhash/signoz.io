@@ -1,6 +1,6 @@
 ---
 id: writing-clickhouse-queries-in-dashboard
-title: ClickHouse queries for building dashboards
+title: ClickHouse queries for building dashboards and alerts
 description: Example clickhouse queries to run analytics on observability data
 ---
 

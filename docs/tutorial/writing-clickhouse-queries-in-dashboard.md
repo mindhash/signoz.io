@@ -47,30 +47,32 @@ select toStartOfInterval(fromUnixTimestamp64Nano(timestamp), INTERVAL 1 MINUTE) 
 
 ## Building Alert Queries with Clickhouse data
 
-The most common usecase for alerts is send a notification when a threshold condition (e.g. CPU Usage > 70 or Error count > 10) is met.  Each alert is composed of a threshold condition, timeframe (e.g. Last 5 minutes) and a match condition (e.g. at least once). The rule engine (in SigNoz) is responsible for evaluating the threshold conditions and triggering notifications. 
+The most common use case for alerts is to send notifications when a threshold condition is met. For example, conditions like CPU usage exceeds 70% (CPU Usage > 70) or failures in a service exceed your expections  (service error count > 10).  
 
-The threshold condition is further made up of operators (e.g. >), left-hand side (e.g. typically a metric like CPU Usage, Error Count) and the right-hand side (e.g. threshold limits like 70, 10 etc). SigNoz allows you a complete flexibility in choosing all three parameters of the threshold condition.  You can choose a metric data through query builder, promQL or a Clickhouse query.    
+Every alert is composed of a threshold, date range (e.g. last 5 mins) and match condition (e.g. at least once).  The rule engine is responsible for evaluating these conditions and triggering notifications. SigNoz allows you a complete flexibility in choosing all three conditions to meet your business requirements. 
 
-The query editor (in the clickhouse tab of alert form) allows you to query Clickhouse to derive metric data and apply a threshold condition on it. The queries can contain the following reserved column aliases and bind variables (for use in WHERE condition) to simplify syntax and allow dynamic parts.  
+The alert evaluation is also based on the source or metric data, the left-hand side of the threshold condition (e.g. CPU Usage (LHS) > 70 (RHS)).    
 
-**Reserved Aliases**: value, res, result, interval 
+The query editor (`clickhouse` tab in the `alert form`) allows you define a query to fetch the metric (source) data from Clickhouse and evaluate if the threshold condition occurs in it.  The query format requires use of following reserved columns and parameters which simplify the syntax and support dynamic parts.
 
-**Reserved Parameters**: 
-- {{.start_datetime}}, {{.end_datetime}} 
-- {{.start_timestamp}}, {{.end_timestamp}}
-- {{.start_timestamp_ms}}, {{.end_timestamp_ms}}
-- {{.start_timestamp_nano}}, {{.end_timestamp_nano}}
+**Reserved Aliases (for use in SELECT, GROUP BY only) **: `value`, `res`, `result`, `interval` 
+
+**Reserved Parameters (for use in WHERE condition only)**: 
+
+- `{{.start_datetime}}` `{{.end_datetime}}` 
+- `{{.start_timestamp}}` `{{.end_timestamp}}`
+- `{{.start_timestamp_ms}}` `{{.end_timestamp_ms}}`
+- `{{.start_timestamp_nano}}` `{{.end_timestamp_nano}}`
 
 
-### Using Clickhouse queries in the Alert form  
+Let's explore sample queries to use clickhouse data in alert evaluation. 
 
-Let's explore writing Clickhouse queries to derive a metric in alert condition. 
+The rule engine is always looking for special column aliases. When the query returns data, the rule engine looks into the result for a column with alias `value` or `result` and compares the vector of all those values with the threshold (defined in alert form).   
 
-A typical SELECT in click house query can have many parameters. But when we write a query for alerts, the rule engine will pick the value from column with alias `value` as metric. 
+For example, the following query retrieves `not found` errors of a service. When this query returns data, the rule engine will compare `value` from each row with the threshold set in alert form. 
 
-For example,  The following query retrieves not found errors for a service. In this case, the rule engine will execute the query, select the result from the column with alias `value` and compare it with threshold limit. 
-
-```SELECT count() AS value  
+```
+SELECT count() AS value  
 FROM signoz_traces.signoz_error_index_v2 
 WHERE (serviceName='api-service’) 
 AND (exceptionType='Not found’);
@@ -80,7 +82,8 @@ If the same query is written without the column alias `value` or `result`, the r
 
 Second reserved column alias is `interval`.  It is useful when you want to apply threshold check over n time intervals.
 
-```SELECT count() AS value, toStartOfInterval(timestamp, INTERVAL 5 MINUTE) AS interval 
+```
+SELECT count() AS value, toStartOfInterval(timestamp, INTERVAL 5 MINUTE) AS interval 
 FROM signoz_traces.signoz_error_index_v2 
 WHERE (serviceName = 'api-service') 
 AND (exceptionType = 'Not found') 

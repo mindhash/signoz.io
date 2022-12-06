@@ -1,4 +1,4 @@
-id: sso_authentication
+id: sso-authentication
 title: Single Sign-on Authentication
 sidebar_label: SSO & SAML
 ---

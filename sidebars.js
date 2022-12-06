@@ -251,6 +251,7 @@ module.exports = {
       items: [
    //     'userguide/overview',
         'userguide/authentication',
+        'userguide/sso-authentication',
         'userguide/retention-period',
       ],
     },

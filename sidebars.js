@@ -67,6 +67,7 @@ module.exports = {
             'operate/migration/upgrade-0.8.1',
             'operate/migration/upgrade-0.9',
             'operate/migration/upgrade-0.10',
+            'operate/migration/upgrade-0.12',
           ]
         },
         {

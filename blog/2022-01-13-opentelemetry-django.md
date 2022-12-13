@@ -186,7 +186,7 @@ There are two other ways to run the Django app with OpenTelemetry using Docker a
 
 b. **If want to run docker image of django app directly**<br></br>
 ```jsx
-docker run --env OTEL_METRICS_EXPORTER=none \
+docker run --env \
     --env OTEL_SERVICE_NAME=djangoApp \
     --env OTEL_EXPORTER_OTLP_ENDPOINT=http://<IP of SigNoz>:4317 \
     --env DJANGO_SETTINGS_MODULE=mysite.settings \
@@ -203,7 +203,6 @@ django-app:
     ports:
       - "8000:8000"
     environment:
-    - OTEL_METRICS_EXPORTER=none
     - OTEL_SERVICE_NAME=djangoApp
     - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
     - DJANGO_SETTINGS_MODULE=mysite.settings

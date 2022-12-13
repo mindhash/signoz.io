@@ -10,6 +10,7 @@ import Link from "@docusaurus/Link";
 import { useThemeConfig } from "@docusaurus/theme-common";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import { isValidEmail } from "./isValidEmail";
+import SignUpFormReact from "./SignUpFormReact";
 
 function FooterLink({ to, href, label, prependBaseUrlToHref, ...props }) {
   const toUrl = useBaseUrl(to);
@@ -99,12 +100,13 @@ function Footer() {
       })}
     >
       <div
-        style={{ display: "flex", justifyContent: "space-between" }}
+        style={{ display: "flex", justifyContent: "center" }}
         className={"footer-container"}
       >
         <div style={{ display: "block" }} className={"footer-yc-logo"}>
           <div style={{ display: "flex", alignItems: "center" }}>
             <img src={"/img/yc-logo.png"} alt={"Y Combinator"} />
+
           </div>
           <div
             style={{
@@ -154,7 +156,9 @@ function Footer() {
           </div>
         )}
 
-        <NewsletterSignup />
+        {/* <NewsletterSignup /> */}
+
+        <SignUpFormReact />
       </div>
       {copyright && (
         <div

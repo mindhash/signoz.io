@@ -180,7 +180,7 @@ The application list shown in the dashboard is from a sample app called HOT R.O.
    :::
    
    ```jsx
-   OTEL_RESOURCE_ATTRIBUTES=service.name=<service_name> OTEL_METRICS_EXPORTER=none OTEL_EXPORTER_OTLP_ENDPOINT="http://<IP of SigNoz>:4317" opentelemetry-instrument python3 app.py
+   OTEL_RESOURCE_ATTRIBUTES=service.name=<service_name> OTEL_EXPORTER_OTLP_ENDPOINT="http://<IP of SigNoz>:4317" opentelemetry-instrument python3 app.py
    ```
 
    As we are running SigNoz on local host, `IP of SigNoz` can be replaced with `localhost` in this case. And, for `service_name` let's use `pythonApp`. Hence, the final command becomes:
@@ -188,7 +188,7 @@ The application list shown in the dashboard is from a sample app called HOT R.O.
    **Final Command**
 
    ```
-   OTEL_RESOURCE_ATTRIBUTES=service.name=pythonApp OTEL_METRICS_EXPORTER=none OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317" opentelemetry-instrument python3 app.py
+   OTEL_RESOURCE_ATTRIBUTES=service.name=pythonApp OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317" opentelemetry-instrument python3 app.py
    ```
 
    And, congratulations! You have instrumented your sample Python app. You can now access the SigNoz dashboard at [http://localhost:3301](http://localhost:3301/) to monitor your app for performance metrics.

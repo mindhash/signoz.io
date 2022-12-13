@@ -67,4 +67,3 @@ For more details on the metadata page, click [here](https://github.com/Microsoft
 5. Enter entity ID, Certificate and ACS URL that you acquired from the metadata page (step 7 above)
 6. Save the settings and log in from an incognito tab to test the setup. If you face difficulties signing in, review the query service logs. Also if you are admin and are unable to login because of faulty setup, then you may login with password using this URL: http(s)://<your-signoz-app-url>/login?password=Y
 
-

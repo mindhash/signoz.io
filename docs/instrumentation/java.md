@@ -163,7 +163,7 @@ If you run your Java application as a JAR file, please follow the below instruct
 
 
 ```bash
-OTEL_METRICS_EXPORTER=none OTEL_EXPORTER_OTLP_ENDPOINT="http://<IP of SigNoz Backend>:4317" OTEL_RESOURCE_ATTRIBUTES=service.name=<app_name> java -javaagent:/path/opentelemetry-javaagent.jar -jar  <myapp>.jar
+OTEL_EXPORTER_OTLP_ENDPOINT="http://<IP of SigNoz Backend>:4317" OTEL_RESOURCE_ATTRIBUTES=service.name=<app_name> java -javaagent:/path/opentelemetry-javaagent.jar -jar  <myapp>.jar
 ```
 
 where <app_name> is the name you want to set for your application. `path` should be updated to the path of downloaded Java JAR agent.
@@ -197,7 +197,6 @@ This should set these environment variables and start sending telemetry data to 
 ```bash
 
 export CATALINA_OPTS="$CATALINA_OPTS -javaagent:/path/to/opentelemetry-javaagent.jar"
-export OTEL_METRICS_EXPORTER=none
 export OTEL_EXPORTER_OTLP_ENDPOINT=http://<IP of SigNoz Backend>:4317
 export OTEL_RESOURCE_ATTRIBUTES=service.name=<app_name>
 

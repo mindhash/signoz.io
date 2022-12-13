@@ -74,7 +74,6 @@ Examples of some of the environment variables to take care of:
 
 ```
 OTEL_TRACES_EXPORTER=otlp
-OTEL_METRICS_EXPORTER=none
 OTEL_EXPORTER_OTLP_ENDPOINT=<IP of SigNoz Backend>:4317
 OTEL_RESOURCE_ATTRIBUTES="service.name=SERVICE_NAME"
 ```
@@ -82,7 +81,6 @@ OTEL_RESOURCE_ATTRIBUTES="service.name=SERVICE_NAME"
 Let's see how the command looks like when you want to run the Java agent attached to an application:
 
 ```
-OTEL_METRICS_EXPORTER=none
 OTEL_EXPORTER_OTLP_ENDPOINT="http://<IP of SigNoz>:4317"
 OTEL_RESOURCE_ATTRIBUTES=service.name=javaApp
 java -javaagent:/path/to/opentelemetry-javaagent-all.jar -jar target/*.jar
@@ -91,7 +89,6 @@ java -javaagent:/path/to/opentelemetry-javaagent-all.jar -jar target/*.jar
 The path to the Java agent JAR file needs to be replaced with the location of the file downloaded. For example, for my local, the command looks like this:
 
 ```
-OTEL_METRICS_EXPORTER=none
 OTEL_EXPORTER_OTLP_ENDPOINT="http://<IP of SigNoz>:4317"
 OTEL_RESOURCE_ATTRIBUTES=service.name=javaApp
 java -javaagent:/Users/Downloads/to/opentelemetry-javaagent-all.jar -jar target/*.jar

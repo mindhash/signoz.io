@@ -16,7 +16,7 @@ To sends logs from a Java application you will have to add the agent and add the
 
 The command for it will look like
 ```bash
-OTEL_METRICS_EXPORTER=none OTEL_LOGS_EXPORTER=otlp OTEL_EXPORTER_OTLP_ENDPOINT="http://<IP of SigNoz Backend>:4317" OTEL_RESOURCE_ATTRIBUTES=service.name=<app_name> java -javaagent:/path/opentelemetry-javaagent.jar -jar  <myapp>.jar
+OTEL_LOGS_EXPORTER=otlp OTEL_EXPORTER_OTLP_ENDPOINT="http://<IP of SigNoz Backend>:4317" OTEL_RESOURCE_ATTRIBUTES=service.name=<app_name> java -javaagent:/path/opentelemetry-javaagent.jar -jar  <myapp>.jar
 ```
 <br></br>
 
@@ -28,7 +28,7 @@ In the below example we will configure a java application to send logs to SigNoz
 * Build the application using `./mvnw package`
 * Now run the application
   ```
-  OTEL_METRICS_EXPORTER=none OTEL_LOGS_EXPORTER=otlp OTEL_EXPORTER_OTLP_ENDPOINT="http://<host>:4317" OTEL_RESOURCE_ATTRIBUTES=service.name=myapp java -javaagent:/path/opentelemetry-javaagent.jar -jar target/*.jar
+  OTEL_LOGS_EXPORTER=otlp OTEL_EXPORTER_OTLP_ENDPOINT="http://<host>:4317" OTEL_RESOURCE_ATTRIBUTES=service.name=myapp java -javaagent:/path/opentelemetry-javaagent.jar -jar target/*.jar
   ```
   
   You will have to replace your the value of `host` as  `0.0.0.0` if SigNoz is running in the same host, for other configurations please check the 

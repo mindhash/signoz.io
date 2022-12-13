@@ -152,7 +152,7 @@ To capture data with OpenTelemetry, you need to configure some environment varia
    As we are running SigNoz on local host, `IP of SigNoz` can be replaced with `localhost` in this case. And, for `service_name` let's use `Flask_App`. Hence, the final command becomes:<br></br>
    **Final Command**
    ```jsx
-   OTEL_RESOURCE_ATTRIBUTES=service.name=Flask_App OTEL_METRICS_EXPORTER=none OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317" opentelemetry-instrument python3 app.py
+   OTEL_RESOURCE_ATTRIBUTES=service.name=Flask_App OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317" opentelemetry-instrument python3 app.py
    ```
 
    And congratulations! You have now instrumented your flask application with OpenTelemetry.

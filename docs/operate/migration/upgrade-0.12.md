@@ -11,8 +11,8 @@ v0.12 introduces distributed clickhouse setup.
 # After upgrading to v0.12
 
 ### Querying distributed tables
-All the tables in clickhouse have been prefixed with `distributed_`. If you have used clickhouse queries in dashboard or alerts, you would need to update the queries with the new table names. 
+The new distributed tables in clickhouse have been named by prefixing `distributed_` to existing single shard table names. If you have used clickhouse queries in dashboard or alerts, you would need to update the queries with the new table names. Eg, `signoz_index_v2` now corresponds to the table of a single shard. To query all the shards, query against `distributed_signoz_index_v2`. 
 
-The old table names will continue to work for single node installations but we recommend changing table names at the earliest to make future upgrade to distributed setup easier. 
+The old table names will continue to work for single node installations as long as you work with a single shard. We recommend changing table names at the earliest to make future upgrade to distributed setup easier. 
 
 

@@ -43,27 +43,29 @@ Integrating SAML with SigNoz lets your users access SigNoz without re-authentica
 
 #### SAML authentication with Azure AD (Active Directory)
 ##### Steps to be performed in Azure AD
-1. Go to the **Azure Active Directory (AD)**  and click on **Enterprise Applications**. 
-2. Click on **+ New Application** in the top bar of the *All Applications* page.
-3. In the next page, click on **+Create your own application**. Enter your application name as *SigNoz*, Select **Integrate with other Applications (Non-Gallery)** option and create.
-4. Once the application is created, go to **Single Sign-On** from left side bar and click on **SAML** card option
-5. When the next page appears, you will see an card for **Basic SAML Configuration**. Click on edit icon button in this card 
-6. Fill out the following details and click **Save**:
-    - Intentifier (Entity ID): Set Base URL (host and port - if any) of your SigNoz app. e.g. http(s)://${SIGNOZ_BASEURL}
+1. Go to the `Azure Active Directory (AD)`  and click on `Enterprise Applications`. 
+2. Click on `+ New Application` in the top bar of the *All Applications* page.
+3. In the next page, click on `+Create your own application`. Enter your application name as *SigNoz*, Select **Integrate with other Applications (Non-Gallery)** option and create.
+4. Once the application is created, go to `Single Sign-On` from left side bar and click on `SAML` card option
+5. When the next page appears, you will see an card for `Basic SAML Configuration`. Click on edit icon button in this card 
+6. Fill out the following details and click `Save`:
+    - Entity Identifier (Entity ID): Set Base URL (host and port - if any) of your SigNoz app. e.g. http(s)://${SIGNOZ_BASEURL}
     - Reply URL(Assertion Consumer Service URL): Set the reply URL using this format - http(s)://${SIGNOZ_BASEURL}/api/v1/complete/saml
 7. Now we need to capture SSO information required to configure SAML in SigNoz. In the page, locate *App Federation Metadata URL*. Preferably, open this metadata page in a new tab. Once there, locate and copy these two field values from XML into a separate notepad: 
-    - At the top of page, locate XML tag EntityDescriptor and copy the *entityID* value 
-    <EntityDescriptor ID="_2d8d...a006" entityID="https://sts.windows.net/00d562...816c79/" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
-    - Locate *X509Data* tag and copy the entity content (value). This is certificate that SigNoz needs to validate response from IdP.
-    - Locate *Location* at the bottom of the page and copy its value. 
+    - At the top of page, locate XML tag `EntityDescriptor` and copy the `entityID` value 
+    ```
+        <EntityDescriptor ID="_2d8d...a006" entityID="https://sts.windows.net/00d562...816c79/" xmlns="urn:oasis:names:tc:SAML:2.0:metadata">
+    ```
+    - Locate `X509Data` tag and copy the entity content (value). This is certificate that SigNoz needs to validate response from IdP.
+    - Locate `Location` at the bottom of the page and copy its value. 
 
 For more details on the metadata page, click [here](https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/active-directory/azuread-dev/azure-ad-federation-metadata.md)
 
 ##### Steps to be performed in SigNoz
-1. Go to **Settings**. Click on **Organization Settings** tab and locate **Authenticated Domains** in the page
-2. Click **Add Domain**
+1. Go to `Settings`. Click on `Organization Settings` tab and locate `Authenticated Domains` in the page
+2. Click `Add Domain`
 3. Enter the domain that your users would login with. For example, if your user names or emails are in format such as *john@example.com* then you would have to enter *example.com* here.
-4. After domain is added, Click on **Configure SSO*** and choose **SAML Authentication** option
-5. Enter entity ID, Certificate and ACS URL that you acquired from the metadata page (step 7 above)
+4. After domain is added, Click on `Configure SSO` and choose `SAML Authentication` option
+5. Enter values of tags `entity ID`, `Certificate Data` and `Location(ACS URL)` that you acquired from the metadata page (step 7 above)
 6. Save the settings and log in from an incognito tab to test the setup. If you face difficulties signing in, review the query service logs. Also if you are admin and are unable to login because of faulty setup, then you may login with password using this URL: http(s)://${SIGNOZ_BASEURL}/login?password=Y
 

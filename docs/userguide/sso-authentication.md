@@ -11,7 +11,7 @@ Google Workspace single sign-on (SSO) provides password-free access to the invit
 
 #### Who can use this feature?
 - Google Workspace Owners and Org Owners
-- Available in `ENTERPRISE` plans. 
+- Available in `ENTERPRISE` plan. 
 
 #### Steps to configure Google OAuth 2.0
 Google Workspace single sign-on (SSO) lets all members of your workspace sign in to SigNoz using their Google accounts. If they don’t have a account in SigNoz yet, they will have to be invited by Admin from `Settings > Organization Settings > Invite Members`.
@@ -39,7 +39,7 @@ Google Workspace single sign-on (SSO) lets all members of your workspace sign in
 Integrating SAML with SigNoz lets your users access SigNoz without re-authenticating. Configuring SAML is a two step process. First, you would have to configure your IdP (Identity Provider like Okta, Azure AD) with details of your SigNoz app. When the first step is complete, you would need to enter the information (like Entity ID, etc) available in your IdP into SigNoz settings (`Settings >> Organization Settings >> Authentication Domains`)
 
 #### Who can use this feature?
-- Available in `ENTERPRISE` plans. 
+- Available in `ENTERPRISE` plan. 
 
 #### SAML authentication with Azure AD (Active Directory)
 ##### Steps to be performed in Azure AD

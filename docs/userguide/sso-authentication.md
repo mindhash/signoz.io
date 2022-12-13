@@ -57,6 +57,8 @@ Integrating SAML with SigNoz lets your users access SigNoz without re-authentica
     - Locate *X509Data* tag and copy the entity content (value). This is certificate that SigNoz needs to validate response from IdP.
     - Locate *Location* at the bottom of the page and copy its value. 
 
+For more details on the metadata page, click [here](https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/active-directory/azuread-dev/azure-ad-federation-metadata.md)
+
 ##### Steps to be performed in SigNoz
 1. Go to **Settings**. Click on **Organization Settings** tab and locate **Authenticated Domains** in the page
 2. Click **Add Domain**

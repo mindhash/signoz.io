@@ -10,9 +10,10 @@ import { LiteYoutubeEmbed } from "react-lite-yt-embed";
 
 ## Setting Alert Rules
 
-You can set Alert Rules in SigNoz in the following 2 ways:
+You can set Alert Rules in SigNoz in the following 3 ways:
 1. Query Builder - This is DIY way to build alerts by selecting metrics from dropdowns. You can also set filter and group by conditions by selecting options from the dashboard.
 2. PromQL - You can use [Prometheus Query Language](https://prometheus.io/docs/prometheus/latest/querying/basics/) to write expressions for alerts which will be evaluated in regular time interval. If you have set up alerts in Prometheus, this method should be very familiar.
+3. Clickhouse Queries - You can write clickhouse queries that adhere to the SigNoz data model and format. The result of the query will be used to evaluate alert threshold conditions. Additionally, you can also generate labels and annotations using the results of your query.
 
 
 
@@ -33,10 +34,20 @@ Alert Rules set the expression you want to evaluate to start firing alerts. The 
 
 #### Create Alert Rules
 
-To create new alert rules, you can click the `New Alerts` button. This would open a pane with an empty graph. As mentioned above, there are 2 ways to create Alert Rules
+To create new alert rules, you can click the `New Alerts` button. This would open a pane with the type of alerts. 
+
+<img width="1101" alt="image" src="https://user-images.githubusercontent.com/10277894/208090898-2a05a349-c071-47e1-9dd3-d0a5de70f113.png">
+
+
+Choose an appropriate type of alert by clicking on one of the cards. 
+
+On the alert form, you can choose one of the following tabs to define source of your metric. 
 
 1. Query Builder
-2. PromQL
+2. Clickhouse Query
+3. PromQL (Available only for metrics)
+
+> Note: Presently the logs, traces and exceptions-based alerts support only Clickhouse Query based metric. 
 
 ##### Query Builder
 In Query Builder, you can use the dropdowns in the dashboard to select the right metric. 
@@ -57,6 +68,15 @@ In PromQL, you can write the Prometheus expression to evaluate.
 - Set labels like `severity` to communicate how severe the issue is if this alert starts firing
 
 ![prometheus-alert-rules](../../static/img/docs/promql-alerts.webp)
+
+
+##### Writing Clickhouse Queries in Alert form
+On `clickhouse query` tab, you will be presented with a query editor with a default query that you can start working with. To learn more about the data-model and query format, read [this tutorial](https://signoz.io/docs/tutorial/writing-clickhouse-queries-in-dashboard/#building-alert-queries-with-clickhouse-data).  
+
+<img width="835" alt="image" src="https://user-images.githubusercontent.com/10277894/208092689-07e7edd6-2277-4cd4-9fbf-a2e13531a4a9.png">
+
+
+You can use `Run Query` to confirm your query works. Include the bind variables and mandatory column aliases as mentioned [here](https://signoz.io/docs/tutorial/writing-clickhouse-queries-in-dashboard/#building-alert-queries-with-clickhouse-data). 
 
 
 #### Triggered Alerts
